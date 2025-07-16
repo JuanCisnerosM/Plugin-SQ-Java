@@ -1,0 +1,120 @@
+<!-- <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ejemplo.sonar</groupId>
+  <artifactId>reglas-personalizadas</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>reglas-personalizadas</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project> -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.miempresa.sonar</groupId>
+  <artifactId>mi-sonar-plugin</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+
+  <name>MiPluginSonarJava</name>
+
+  <properties>
+    <java.version>11</java.version>
+    <sonar.api.version>9.9.0.65466</sonar.api.version>
+    <sonar.java.plugin.version>8.14.1.39293</sonar.java.plugin.version>
+  </properties>
+
+  <dependencies>
+    <!-- API de SonarQube (compatibilidad confirmada con Community 25.6) -->
+    <!-- <dependency>
+      <groupId>org.sonarsource.java</groupId>
+      <artifactId>sonar-java-plugin</artifactId>
+      <version>8.14.1.39293</version>
+      <scope>provided</scope>
+    </dependency> -->
+
+    <!-- Plugin de Java (versión instalada en tu contenedor) -->
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <version>9.14.0.375</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- Plugin Java para análisis -->
+    <dependency>
+      <groupId>org.sonarsource.java</groupId>
+      <artifactId>sonar-java-plugin</artifactId>
+      <version>8.14.1.39293</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+<repositories>
+    <repository>
+      <id>sonarsource-repo</id>
+      <url>https://repo.maven.apache.org/maven2/</url>
+    </repository>
+    <!-- <repository>
+      <id>sonarsource-public</id>
+      <url>https://repo.sonarsource.org/content/groups/public/</url>
+    </repository> -->
+</repositories>
+
+
+  <build>
+    <plugins>
+      <!-- Plugin para compilar -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin para agregar metadatos al JAR -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Plugin-Key>mi-sonar-plugin</Plugin-Key>
+              <Plugin-Name>MiPluginSonarJava</Plugin-Name>
+              <Plugin-Version>1.0-SNAPSHOT</Plugin-Version>
+              <Plugin-Description>Plugin personalizado para detectar System.out.println</Plugin-Description>
+              <Plugin-Class>com.ejemplo.sonar.rules.MyCustomRulesPlugin</Plugin-Class>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+

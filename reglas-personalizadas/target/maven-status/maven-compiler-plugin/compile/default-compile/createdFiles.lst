@@ -1,0 +1,6 @@
+com\ejemplo\sonar\rules\AvoidLongMethodRule.class
+com\ejemplo\sonar\rules\MyCustomRulesDefinition.class
+com\ejemplo\sonar\rules\AvoidSystemOutPrintlnRule.class
+com\ejemplo\sonar\App.class
+com\ejemplo\sonar\rules\MyCustomRulesRegistrar.class
+com\ejemplo\sonar\rules\MyCustomRulesPlugin.class
